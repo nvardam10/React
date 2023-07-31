@@ -1,0 +1,62 @@
+.App {
+  text-align: center;
+  /* display: flex; */
+  min-height: 100vh;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-image: linear-gradient(79deg,#0a021d,#570850 48%, #b322b8);
+}
+
+.auth-form,.login-form,.register-form{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.auth-form{
+  padding: 3rem;
+  border: 1px solid white;
+  border-radius: 10px;
+  margin: 4em;
+  align-items: center;
+
+}
+
+label{
+  text-align: left;
+  padding: 0.25rem 0;
+}
+
+.maininput{
+  /* justify-content: center; */
+  margin: 1pxy 0;
+  padding: 1rem;
+  border: none;
+  border-radius: 10px;
+  width: 100%;
+}
+
+.alert{
+  color: rgb(251, 255, 0);
+  font-size: small;
+  margin-top: 2px;
+  align-self: flex-start;
+}
+
+button{
+  border:none;
+  background-color: rgb(255, 255, 255);
+  margin-top: 20px;
+  padding: 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  color:#640a5a ;
+  width: 60%;
+  justify-self: center;
+}
+
+.link-btn{
+  background:none;
+  color: white;
+  text-decoration: underline;
+}
