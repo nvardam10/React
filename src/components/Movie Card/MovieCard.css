@@ -10,7 +10,8 @@
     border-radius: 1px;
     padding: 20px;
     margin: 20px;
-    width: 100px;
+    height: 270px;
+    width: 125px;
     cursor: pointer;
     transition: all 0.3s;
     
@@ -38,6 +39,16 @@
 .column1{
     box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
 }
+
+.page{
+    display: flex;
+    width: 100px;
+    align-self: center;
+    justify-content: space-evenly;
+    margin: 20px;
+}
+
+
 /* .column {
     float: left;
     width: 50%;

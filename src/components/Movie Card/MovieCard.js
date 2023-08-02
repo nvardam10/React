@@ -4,7 +4,8 @@ import "./MovieCard.css";
 
 
 
-const MovieCard = ({ isAdmin,movieObj,idx ,setIdFun,deleteDataIdx}) => {
+const MovieCard = ({ isAdmin, movieObj, idx, setIdFun, deleteDataIdx }) => {
+    console.log(idx,movieObj);
     const history = useHistory();
     const onMovieClick = value => () => {
     
@@ -15,7 +16,6 @@ const MovieCard = ({ isAdmin,movieObj,idx ,setIdFun,deleteDataIdx}) => {
     }
     function navEdit(e) {
         e.preventDefault();
-        // console.log(idx);
         setIdFun(idx)
                 history.push("./MovieEdit")    
     }
@@ -24,19 +24,18 @@ const MovieCard = ({ isAdmin,movieObj,idx ,setIdFun,deleteDataIdx}) => {
         e.preventDefault();
         // console.log(idx);
         deleteDataIdx(idx)
-                // history.push("./MovieEdit")    
+                
             }
 
     return (
         <div  className="movieCard">
 
-            <img onClick={onMovieClick(movieObj.id)} src={movieObj.poster} style={{width:"100px"}} alt="poster" />
+            <img onClick={onMovieClick(movieObj.id)} src={movieObj.poster} style={{width:"100px", height:"150px"}} alt="poster" />
             <p><b>{movieObj.name}</b></p>
-            
-            {isAdmin && <button onClick={navEdit}><b>Edit</b></button>}
-            {isAdmin && <button onClick={deleteMovie}><b>Delete</b></button>}
-            {/* {console.log(movieObj)} */}
-            
+            <div style={{display:"flex", marginTop:"0px"}} >
+                {isAdmin && <button style={{marginRight:"3px", padding:"5px"}} onClick={navEdit}><b>Edit</b></button>}
+                {isAdmin && <button style={{marginLeft:"3px",  padding:"5px"}} onClick={deleteMovie}><b>Delete</b></button>}
+            </div>  
         </div>
     );
 }

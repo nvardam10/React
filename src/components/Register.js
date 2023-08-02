@@ -73,7 +73,7 @@ export const Register = ({ onFormSwitch }) => {
             dispatch(registerUser({ email, user: obj }))
             history.push("./Login");
         }
-        // resetform();
+    
     };
 
         const navToLogin = (e) => {
@@ -101,7 +101,10 @@ export const Register = ({ onFormSwitch }) => {
                 <label htmlFor="confirmpassword">Confirm Password:</label>
                 <input className="maininput" value={confirmpass} onChange={handleConfirmPasswordChange} type="password" placeholder="Enter your password" name="confirmpassword" />
                 {!isValidConfirmPassword && <p className="alert">Password must be at least 6 characters long.</p>}
-                <button type="submit"><b>Register</b></button>
+                
+                <div>
+                    <button type="submit"><b>Register</b></button>
+                </div>
             </form>
             
             <button className="link-btn" onClick={navToLogin}>Already have an account? Login here</button>

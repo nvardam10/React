@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import "./Movie.css";
-// import Add button
 import { useHistory } from "react-router-dom";
 
 
-
-export const MovieAdd = ({ movieObj }) => {
+export const MovieAdd = ({ movieObj,isLogin }) => {
   const history = useHistory();
     
     const [id, setId] = useState('');
@@ -97,43 +95,47 @@ export const MovieAdd = ({ movieObj }) => {
     
     
     return (
-        <div className="auth-form" >
-            <form className="add-form" onSubmit={handleSubmit}>
+        <div>
+            { isLogin?
+                <div className="auth-form" >
+                    <form className="add-form" onSubmit={handleSubmit}>
 
-                <label  htmlFor="id">Id:</label>
-                <input className='adinput' value={id} onChange={handleIdChange} type="number" placeholder="Add Id " id="id" name="id" />
-                {!isValidId && <p className="alert">Please enter a id.</p>}
+                        <label htmlFor="id"><b>ID:</b></label>
+                        <input className='adinput' value={id} min="1" onChange={handleIdChange} type="number" placeholder="Add Id " id="id" name="id" />
+                        {!isValidId && <p className="alert">Please enter a id.</p>}
 
-                <label htmlFor="name">Poster:</label>
-                <input className='adinput' value={poster} onChange={handlePosterChange} type="url" placeholder="Add Poster" id="poster" name="poster" />
-                {!isValidPoster && <p className="alert">Please enter a valid email address.</p>}
+                        <label htmlFor="name"><b>Poster:</b></label>
+                        <input className='adinput' value={poster} onChange={handlePosterChange} type="url" placeholder="Add Poster" id="poster" name="poster" />
+                        {!isValidPoster && <p className="alert">Please enter a valid email address.</p>}
             
-                <label htmlFor="name">Name:</label>
-                <input className='adinput' value={name} onChange={handleNameChange} type="text" placeholder="Add Name" id="name" name="name" />
-                {!isValidName && <p className="alert">Please enter a valid email address.</p>}
+                        <label htmlFor="name"><b>Name:</b></label>
+                        <input className='adinput' value={name} onChange={handleNameChange} type="text" placeholder="Add Name" id="name" name="name" />
+                        {!isValidName && <p className="alert">Please enter a valid email address.</p>}
             
-                <label htmlFor="release">Release Date:</label>
-                <input className='adinput' value={release} onChange={handleReleaseChange} type="date" placeholder="Add Date" id="release" name="release" />
-                {!isValidRelease && <p className="alert">Please enter a valid email address.</p>}
+                        <label htmlFor="release"><b>Release Date:</b></label>
+                        <input className='adinput' value={release} onChange={handleReleaseChange} type="date" placeholder="Add Date" id="release" name="release" />
+                        {!isValidRelease && <p className="alert">Please enter a valid email address.</p>}
             
-                <label htmlFor="type">Category:</label>
-                {/* <input className='adinput' value={type} onChange={handleTypeChange} type="type" placeholder="Add type" id="type" name="type" /> */}
-                <select className='adinput' value={type} onChange={handleTypeChange} placeholder="Add type" id="type" name="type">
-                    <option value="select">--select--</option>
-                    <option value="action">Action</option>
-                    <option value="romance">Romance</option>
-                    <option value="horror">Horror</option>
-                    <option value="comedy">Comedy</option>
-                    <option value="sci-fi">Sci-fi</option>
-                </select>
-                {!isValidType && <p className="alert">Please enter a valid email address.</p>}
+                        <label htmlFor="type"><b>Category:</b></label>
+                        <select className='adinput' value={type} onChange={handleTypeChange} placeholder="Add type" id="type" name="type">
+                            <option value="select">--select--</option>
+                            <option value="action">Action</option>
+                            <option value="romance">Romance</option>
+                            <option value="horror">Horror</option>
+                            <option value="comedy">Comedy</option>
+                            <option value="sci-fi">Sci-fi</option>
+                        </select>
+                        {!isValidType && <p className="alert">Please enter a valid email address.</p>}
 
-                <button  className='add' type="submit"><b>Add</b></button>
-                <button onClick={navToBack} className='cancel'><b>Cancel</b></button>
-            </form>
+                        <div style={{ display: "flex", padding: "10px", justifyContent: "space-evenly", width: "100%" }}>
+                            <button className='add' type="submit"><b>Add</b></button>
+                            <button onClick={navToBack} className='cancel'><b>Cancel</b></button>
+                        </div>
+                
+                    </form>
 
-        </div>
-
+                </div>: (history.push("./Login"))
+            }</div>
 
             
     );

@@ -1,24 +1,19 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
+import { loggedInUser } from "../Helper/userSlide";
 
-export const Login = ({onAdminLogin}) => {
+export const Login = ({ onAdminLogin, onLogin }) => {
+    // event.preventDefault();
     const [email, setEmail] = useState('');
     const [pass, setPass] = useState('');
     const [isValidEmail, setIsValidEmail] = useState(true);
     const [isValidPassword, setIsValidPassword] = useState(true);
-
     const [isValid, setIsValid] = useState(false);
-
     const history = useHistory();
+    const dispatch = useDispatch();
     const users = useSelector((state) => state.auth.users);
-    // console.log(users)
-    // const [userData, setUserData] = useState([]);
-
-    function userDataHandler() {
-        // setUserData((data) =>[...data,userDetails]);
-    }
-    
 
     const validateEmail = (email) => {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -32,7 +27,6 @@ export const Login = ({onAdminLogin}) => {
     const handleEmailChange = (e) => {
         const { value } = e.target;
         setEmail(value);
-        // console.log(validateEmail(value))
         setIsValidEmail(validateEmail(value));
     };
 
@@ -42,25 +36,24 @@ export const Login = ({onAdminLogin}) => {
         setIsValidPassword(validatePassword(value));
     };
 
-    // const resetForm = () => {
-    //     email = "";
-    //     pass = "";
-    // }
     const handleSubmit = (e) => {
         e.preventDefault();
-        // console.log(email);
-        
 
         if (isValidEmail && isValidPassword) {
             if (email === "admin@gmail.com" && pass === "Admin@123") {
                 onAdminLogin(true);
+                onLogin(true);
+                dispatch(loggedInUser("admin"))
                 history.push("./MovieData");
+                
             }
             else if (!users.hasOwnProperty(email) || users[email].password != pass) {
                 setIsValid(true);
             }
             else {
                 onAdminLogin(false);
+                onLogin(true);
+                dispatch(loggedInUser("user"))
                 history.push("/MovieData");
             }
         }
@@ -79,11 +72,13 @@ export const Login = ({onAdminLogin}) => {
             <form className="login-form" onSubmit={ handleSubmit}>
             <label  htmlFor="email">Email:</label>
             <input className="maininput" value={email} onChange={handleEmailChange} type="email" placeholder="Enter your email" id="email" name="email" />
-            {!isValidEmail && <p className="alert">Please enter a valid email address.</p>}
+                {!isValidEmail && <p className="alert">Please enter a valid email address.</p>}
+                
             <label htmlFor="password">Password:</label>
             <input className="maininput" value={pass} onChange={handlePasswordChange} type="password" placeholder="Enter your password" name="password" />
                 {!isValidPassword && <p className="alert">Password must be at least 6 characters long.</p>}
                 {isValid && <p className="alert">Either email or password is incorrect</p>}
+                
                 <div>
                     <button type="submit"><b>Login</b></button>
 
