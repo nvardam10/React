@@ -136,8 +136,6 @@ export const MovieAdd = ({ movieObj,isLogin }) => {
 
                 </div>: (history.push("./Login"))
             }</div>
-
-            
     );
 
 }
